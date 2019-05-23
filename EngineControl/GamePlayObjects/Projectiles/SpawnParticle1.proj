@@ -1,0 +1,28 @@
+ID = "SpawnParticle1"
+
+images = ["_IMAGES/Sprites/Spawners/SpawnerParticle1.png"]
+
+
+lifeTime = 150
+speed = 20
+multiplier = 1
+friendly = False
+damage = 1
+drawAfter = 1
+cooldown = 12
+energyUse = 1
+useGravity = 1
+
+def onLoad(host):
+    pass
+
+def onMove(host):
+    pass
+
+def onHit(host):
+    host.shouldKill = True
+
+def onDraw(host):
+    pass
+
+

@@ -1,0 +1,52 @@
+class InterMod:
+    def __init__(self, host):
+        import pygame
+        self.host = host
+
+        self.unlockedDesc = self.host.jsonArgs["PopUp"]
+        self.lockedDesc = self.host.jsonArgs["PopUp"] + " (Locked)"
+
+        self.onScreenDesc = self.lockedDesc
+
+        self.useCollide = False
+        if "useCollide" in self.host.jsonArgs:
+            self.useCollide = self.host.jsonArgs["useCollide"]
+
+        self.playerPosMult = [1, 1]
+        if "playerPosMult" in self.host.jsonArgs:
+            self.playerPosMult = self.host.jsonArgs["playerPosMult"]
+
+        self.controller = None
+        if "controller" in self.host.jsonArgs:
+            self.controller = self.host.jsonArgs["controller"]
+
+        self.isUnlocked = False
+
+        self.offImg = pygame.image.load(self.host.jsonArgs["imagePath"])
+        self.onImg = pygame.image.load(self.host.jsonArgs["imagePathOpen"])
+
+    def onInteract(self):
+        if not self.useCollide:
+            if self.isUnlocked:
+                self.host.world.triggerEnv([self.host.jsonArgs["PlayerPos"][0] * self.playerPosMult[0], self.host.jsonArgs["PlayerPos"][1] * self.playerPosMult[1]], self.host.jsonArgs["Grid"], self.host.jsonArgs["GridPos"])
+
+    def onCollision(self):
+        if self.useCollide:
+            if self.isUnlocked:
+                self.host.world.triggerEnv([self.host.jsonArgs["PlayerPos"][0] * self.playerPosMult[0], self.host.jsonArgs["PlayerPos"][1] * self.playerPosMult[1]], self.host.jsonArgs["Grid"], self.host.jsonArgs["GridPos"])
+
+    def onAIUpdate(self):
+        if self.controller != None:
+            if self.host.world.permenData.getEnvValue(self.controller, "stateBool", False):
+                self.host.image = self.onImg
+                self.isUnlocked = True
+                self.onScreenDesc = self.unlockedDesc
+            else:
+                self.host.image = self.offImg
+                self.isUnlocked = False
+                self.onScreenDesc = self.lockedDesc
+        else:
+            self.host.image = self.onImg
+            self.isUnlocked = True
+            self.onScreenDesc = self.unlockedDesc
+

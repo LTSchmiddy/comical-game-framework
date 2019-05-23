@@ -1,0 +1,53 @@
+
+class InterMod:
+    def __init__(self, host):
+        self.host = host
+        self.onScreenDesc = self.host.jsonArgs["PopUp"]
+
+        from dataManagers import counter
+        import random
+
+        self.rand = random
+
+        self.lastSpawn = counter.TickCounter(self.host.jsonArgs["respawnRate"], False, False)
+        self.numberOfEnemies = self.host.jsonArgs["numberOfEnemies"]
+        self.enemiesList = []
+
+        self.enemyRef = self.host.jsonArgs["enemyRef"]
+
+        self.spawnBox = [[0, 0], self.host.dimens]
+        if "spawnBox" in self.host.jsonArgs:
+            self.spawnBox = self.host.jsonArgs["spawnBox"]
+
+        self.spawnOnStart = 0
+        if "spawnOnStart" in self.host.jsonArgs:
+            self.spawnOnStart = self.host.jsonArgs["spawnOnStart"]
+
+        if self.spawnOnStart > 0:
+            for i in range(0, self.spawnOnStart):
+                self.spawnNewEnemy()
+
+
+    def spawnNewEnemy(self):
+        spawnOfs = [self.rand.randint(self.spawnBox[0][0], self.spawnBox[1][0]), self.rand.randint(self.spawnBox[0][1], self.spawnBox[1][1])]
+        newEnemy = self.host.world.spawnEnemy(self.enemyRef, [self.host.rect.topleft[0] + spawnOfs[0], self.host.rect.topleft[1] + spawnOfs[1]])
+        newEnemy.spawnerList = self.enemiesList
+        self.enemiesList.append(newEnemy)
+
+
+    def onInteract(self):
+        pass
+
+    def onCollision(self):
+        pass
+
+    def onAIUpdate(self):
+        if len(self.enemiesList) > 0:
+            for i in self.enemiesList:
+                if i.shouldDie:
+                    self.enemiesList.remove(i)
+
+        if self.lastSpawn.check():
+            if len(self.enemiesList) < self.numberOfEnemies:
+                self.spawnNewEnemy()
+                self.lastSpawn.reset()

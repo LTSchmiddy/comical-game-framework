@@ -1,0 +1,13 @@
+{
+    "name": "Transition",
+    "label": "SET_ME!! - Transition",
+    "pos": [0,0],
+    "layer": 5,
+    "PopUp": "To New Location",
+    "Grid": "_OverWorld",
+    "GridPos": [0, 0],
+    "PlayerPos": [0, 0],
+    "useCollide": true,
+    "useTemplate": "Left",
+    "useTemplateFile": "Transitions.json"
+}

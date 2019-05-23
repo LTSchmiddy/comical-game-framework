@@ -1,0 +1,607 @@
+{
+    "Objects": {
+
+        "Lever1":{
+            "name": "Lever",
+            "PopUp": "E) Flip Main Switch",
+            "radius": 20,
+            "type": "ImageBg",
+            "pos":[0, 0],
+            "imagePath": "_IMAGES/Sprites/Switches/Lever1/Lever1_OFF.png",
+            "imagePathOn": "_IMAGES/Sprites/Switches/Lever1/Lever1_ON.png",
+            "InteractMod": "Switch",
+            "default": false,
+            "layer": -1
+        },
+
+        "Pillar1":{
+            "name": "Pillar",
+            "PopUp": "E) Take",
+            "radius": 20,
+            "type": "ImageBg",
+            "pos":[0, 0],
+            "imagePath": "_IMAGES/Sprites/Decor/GardenDecor/Pedestal/Pedestal.png",
+            "InteractMod": "ItemOnMap",
+            "ItemID": "ManaTank",
+            "ItemPos": [17, 50],
+            "default": false,
+            "layer": -1
+        },
+
+        "Resurrection Pit":{
+            "name": "Resurrection Pit",
+            "type": "ImageBg",
+            "pos":[500, 500],
+            "animFolder": "_IMAGES\\Sprites\\SavePits\\Anim",
+            "animDelay": 5,
+            "animExt": ".png",
+            "layer": 1
+        },
+
+
+        "BackWall1": {
+            "type": "EnvImageObj",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"sewer_Large.png",
+            "tileCoord":[1,3],
+            "tileSize":[64, 64],
+            "color":[0, 0, 0],
+            "layer": -5
+        },
+
+        "GraniteWall1": {
+            "type": "EnvImageObj",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"Granite.png",
+            "tileCoord":[0,0],
+            "tileSize":[64, 64],
+            "color":[0, 0, 0],
+            "layer": -5
+        },
+
+        "CastleWall1": {
+            "type": "EnvImageObj",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"LargeCastle.png",
+            "tileCoord":[1,4],
+            "tileSize":[64, 64],
+            "color":[0, 0, 0],
+            "layer": -5
+        },
+
+        "BlackCastleWall1": {
+            "type": "EnvImageObj",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"LargeCastle_Black.png",
+            "tileCoord":[1,4],
+            "tileSize":[64, 64],
+            "color":[0, 0, 0],
+            "layer": -5
+        },
+
+        "BlackCastleWall2": {
+            "type": "EnvImageObj",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"LargeCastle_Black.png",
+            "tileCoord":[7,11],
+            "tileSize":[64, 64],
+            "color":[0, 0, 0],
+            "layer": -5
+        },
+
+        "BCPlat1": {
+            "type": "EnvImagePlat",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"LargeCastle_Black.png",
+            "tileCoord":[7,10],
+            "tileSize":[64, 64],
+            "color":[0, 0, 0],
+            "layer": -5
+        },
+
+
+        "BWPlat1":{
+            "type": "EnvImagePlat",
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos":[73, 10],
+            "dimens":[5, 1],
+            "tilePath":"sewer_Large.png",
+            "tileCoord":[1,1],
+            "tileSize":[64, 64],
+            "color":[0, 135, 125],
+            "layer": -1
+        },
+
+
+        "CaveWall1": {
+            "type": "EnvImageObj",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"CaveOil.png",
+            "tileCoord":[1,9],
+            "tileSize":[64, 64],
+            "color":[85, 64, 49],
+            "layer": -5
+        },
+
+        "CWPlat1": {
+            "type": "EnvImagePlat",
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos":[0,-500],
+            "dimens":[5,1],
+            "tilePath":"CaveOil.png",
+            "tileCoord":[1,9],
+            "tileSize":[64, 64],
+            "color":[85, 64, 49],
+            "layer": -5
+        },
+
+        "PineBG1": {
+            "type": "EnvImageBg",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "imagePath":"_IMAGES/TileFiles/Pine32.png",
+            "color":[85, 64, 49],
+            "layer": -5
+        },
+
+        "PineBG2": {
+            "type": "EnvImageBg",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "imagePath":"_IMAGES/TileFiles/Pine32_Dark.png",
+            "color":[85, 64, 49],
+            "layer": -5
+        },
+
+        "HWFloor1": {
+            "type": "EnvImageObj",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "imagePath":"_IMAGES/TileFiles/HardWoodFloor.png",
+            "color":[85, 64, 49],
+            "layer": -5
+        },
+
+        "HWPlat1": {
+            "type": "EnvImagePlat",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "imagePath":"_IMAGES/TileFiles/HardWoodFloor.png",
+            "color":[85, 64, 49],
+            "layer": -5
+        },
+
+        "Roofing1": {
+            "type": "EnvImageBg",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"BasicTownOil.png",
+            "tileCoord":[7,2],
+            "tileSize":[64, 64],
+
+
+            "color":[0, 0, 0, 255],
+            "layer": -5
+        },
+
+        "TownBrick1": {
+            "type": "EnvImageBg",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"BasicTownOil.png",
+            "tileCoord":[0,0],
+            "tileSize":[64, 64],
+
+
+            "color":[0, 0, 0, 0],
+            "layer": -5
+        },
+
+
+        "CaveBG1": {
+            "type": "EnvImageBg",
+            "use64Xpos": true,
+            "use64Xdimens": true,
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "tilePath":"CaveOil.png",
+            "tileCoord":[6,3],
+            "tileSize":[64, 64],
+            "color":[85, 64, 49],
+            "layer": -5
+        },
+
+        "OutdoorGrass1": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "type": "EnvShuffleImageObj",
+            "pos":[0,0],
+            "dimens":[3008,1000],
+            "tiles": [
+                {
+                    "weight": 1,
+                    "path":"terrainBasic64.png",
+                    "coord":[0,11],
+                    "size":[64, 64]
+                },
+                {
+                    "weight": 1,
+                    "path":"terrainBasic64.png",
+                    "coord":[1,11],
+                    "size":[64, 64]
+                },
+                {
+                    "weight": 3,
+                    "path":"terrainBasic64.png",
+                    "coord":[2,11],
+                    "size":[64, 64]
+                }
+            ],
+            "color":[0, 135, 125],
+            "seed": 1,
+            "layer": -1
+        },
+
+        "OutdoorGrass2": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "type": "EnvImageObj",
+            "pos":[0,0],
+            "dimens":[3008,1000],
+            "tilePath":"terrainBasic64.png",
+            "tileCoord":[2,11],
+            "tileSize":[64, 64],
+            "color":[0, 135, 125],
+            "seed": 1,
+            "layer": -1
+        },
+
+        "Acid1": {
+            "InteractMod": "DamagePlayer",
+            "PopUp": "Acid",
+            "alpha": 100,
+            "color": [
+                255,
+                0,
+                255
+            ],
+            "dimens": [
+                40,
+                10
+            ],
+            "layer": 5,
+            "pos": [
+                20,
+                30
+            ],
+            "type": "EnvColorBg",
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "fluid": true
+        },
+
+
+        "OGPlat1": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "type": "EnvShuffleImagePlat",
+            "pos":[0,0],
+            "dimens":[3008,1000],
+            "tiles": [
+                {
+                    "weight": 1,
+                    "path":"terrainBasic64.png",
+                    "coord":[0,11],
+                    "size":[64, 64]
+                },
+                {
+                    "weight": 1,
+                    "path":"terrainBasic64.png",
+                    "coord":[1,11],
+                    "size":[64, 64]
+                },
+                {
+                    "weight": 3,
+                    "path":"terrainBasic64.png",
+                    "coord":[2,11],
+                    "size":[64, 64]
+                }
+            ],
+            "color":[0, 135, 125],
+            "seed": 1,
+            "layer": -1
+        },
+
+        "OGPlat2": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "type": "EnvImagePlat",
+            "pos":[0,0],
+            "dimens":[3008,1000],
+            "tilePath":"terrainBasic64.png",
+            "tileCoord":[2,11],
+            "tileSize":[64, 64],
+            "color":[0, 135, 125],
+            "seed": 1,
+            "layer": -1
+        },
+
+
+        "Airpad": {
+            "name": "Airpad",
+            "type": "ImageBg",
+            "pos":[500, 500],
+            "tilePath": "Airpad.png",
+            "tileCoord":[0,0],
+            "tileSize":[64, 64],
+            "InteractMod": "LaunchUp",
+            "bounceHeight": -10,
+            "layer": -1
+        },
+
+        "Lamp1": {
+            "name": "Lamp",
+            "type": "ImageBg",
+            "pos":[500, 500],
+            "tilePath": "sewer_Large.png",
+            "tileCoord":[5,5],
+            "tileSize":[64, 64],
+            "InteractMod": "BasicChat",
+            "layer": -1
+        },
+
+        "SmallDoor": {
+            "name": "Small Door",
+            "type": "ImageBg",
+            "pos":[500, 500],
+            "tilePath": "sewer_Large.png",
+            "tileCoord":[7,1],
+            "tileSize":[64, 64],
+            "InteractMod": "BasicChat",
+            "layer": -1
+        },
+
+
+        "SewerArchWayR": {
+            "type": "EnvImageGridBg",
+            "pos":[500,-50],
+            "layer": -1,
+            "tileSize":[64, 64],
+            "shouldFill": true,
+            "color":[155, 0, 0, 255],
+            "Children":{
+                "Fill":{
+                    "type": "EnvColorBg",
+                    "pos":[0, 0],
+                    "dimens":[192, 128],
+                    "color":[105, 0, 0],
+                    "layer": -2
+                    }
+            },
+            "images": {
+                "leftArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[4,6],
+                        "size":[64, 64]
+                    }
+                },
+                "rightArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[6,6],
+                        "size":[64, 64]
+                    }
+                },
+                "lTopArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[4,5],
+                        "size":[64, 64]
+                    }
+                },
+                "rTopArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[6,5],
+                        "size":[64, 64]
+                    }
+                },
+                "mTopArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[5,5],
+                        "size":[64, 64]
+                    }
+                }
+            },
+            "grid": [
+                ["lTopArch", "mTopArch", "rTopArch"],
+                ["leftArch", "", "rightArch"]
+            ]
+
+        },
+
+
+        "SewerArchWay1": {
+            "type": "EnvImageGridBg",
+            "pos":[500,-50],
+            "layer": -1,
+            "tileSize":[64, 64],
+            "shouldFill": true,
+            "color":[0, 0, 0, 255],
+            "Children":{
+                "Fill":{
+                    "type": "EnvColorBg",
+                    "pos":[0, 0],
+                    "dimens":[192, 128],
+                    "color":[0, 0, 0],
+                    "layer": -2
+                    }
+            },
+            "images": {
+                "leftArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[4,6],
+                        "size":[64, 64]
+                    }
+                },
+                "rightArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[6,6],
+                        "size":[64, 64]
+                    }
+                },
+                "lTopArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[4,5],
+                        "size":[64, 64]
+                    }
+                },
+                "rTopArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[6,5],
+                        "size":[64, 64]
+                    }
+                },
+                "mTopArch":{
+                    "tile":{
+                        "path":"sewer_Large.png",
+                        "coord":[5,5],
+                        "size":[64, 64]
+                    }
+                }
+            },
+            "grid": [
+                ["lTopArch", "mTopArch", "rTopArch"],
+                ["leftArch", "", "rightArch"]
+            ]
+
+        },
+
+        "BushLeft": {
+            "type": "EnvImageGridBg",
+            "pos":[500,-50],
+            "layer": -1,
+            "tileSize":[64, 64],
+            "images": {
+                "top":{
+                    "tile":{
+                        "path":"terrainBasic64.png",
+                        "coord":[9,8],
+                        "size":[64, 64]
+                    }
+                },
+                "base":{
+                    "tile":{
+                        "path":"terrainBasic64.png",
+                        "coord":[9,9],
+                        "size":[64, 64]
+                    }
+                }
+            },
+            "grid": [
+                ["top"],
+                ["base"]
+            ]
+
+        },
+        "BushMid": {
+            "type": "EnvImageGridBg",
+            "pos":[500,-50],
+            "layer": -1,
+            "tileSize":[64, 64],
+            "images": {
+                "top":{
+                    "tile":{
+                        "path":"terrainBasic64.png",
+                        "coord":[10,8],
+                        "size":[64, 64],
+                        "offset":[1, 2]
+                    }
+                },
+                "base":{
+                    "tile":{
+                        "path":"terrainBasic64.png",
+                        "coord":[10,9],
+                        "size":[64, 64],
+                        "offset":[1, 2]
+                    }
+                }
+            },
+            "grid": [
+                ["top"],
+                ["base"]
+            ]
+
+        },
+        "BushRight": {
+            "type": "EnvImageGridBg",
+            "pos":[500,-50],
+            "layer": -1,
+            "tileSize":[64, 64],
+            "images": {
+                "top":{
+                    "tile":{
+                        "path":"terrainBasic64.png",
+                        "coord":[11,8],
+                        "size":[64, 64],
+                        "offset":[1, 2]
+                    }
+                },
+                "base":{
+                    "tile":{
+                        "path":"terrainBasic64.png",
+                        "coord":[11,9],
+                        "size":[64, 64],
+                        "offset":[1, 2]
+                    }
+                }
+            },
+            "grid": [
+                ["top"],
+                ["base"]
+            ]
+
+        }
+    }
+}

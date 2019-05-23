@@ -1,0 +1,16 @@
+{
+    "label": "SET_ME!! - Lever1",
+    "useTemplate": "KeyHole1",
+    "useTemplateFile": "Switches.json",
+    "name": "Keyhole",
+    "Key ID": "BaseKey",
+    "Can Remove": false,
+    "PopUp": "E) Insert",
+    "PopUp_R": "E) Remove",
+    "pos": [
+        0,
+        0
+    ],
+    "default": false,
+    "layer": -1
+}

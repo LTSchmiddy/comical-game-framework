@@ -1,0 +1,91 @@
+{
+    "Objects": {
+        "RightAccess": {
+            "type": "EnvImageGridBg",
+            "layer": -10,
+            "tileSize":[64, 64],
+            "images": {
+                "empty":{
+                    "tile":{
+                        "path":"CaveOil.png",
+                        "coord":[6,3],
+                        "size":[64, 64]
+                    }
+                },
+                "topCorner":{
+                    "tile":{
+                        "path":"CaveOil.png",
+                        "coord":[15,3],
+                        "size":[64, 64],
+                        "offset":[0, 1]
+                    }
+                },
+                "rightEdge":{
+                    "tile":{
+                        "path":"CaveOil.png",
+                        "coord":[10,1],
+                        "size":[64, 64],
+                        "offset":[0, 0]
+                    }
+                }
+            },
+            "grid": [
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"]
+            ]
+
+        },
+
+        "LeftAccess": {
+            "type": "EnvImageGridBg",
+            "layer": -10,
+            "tileSize":[64, 64],
+            "images": {
+                "empty":{
+                    "tile":{
+                        "path":"CaveOil.png",
+                        "coord":[6,3],
+                        "size":[64, 64]
+                    }
+                },
+                "topCorner":{
+                    "tile":{
+                        "path":"CaveOil.png",
+                        "coord":[15,3],
+                        "size":[64, 64],
+                        "offset":[0, 0]
+                    }
+                },
+                "rightEdge":{
+                    "tile":{
+                        "path":"CaveOil.png",
+                        "coord":[11,1],
+                        "size":[64, 64],
+                        "offset":[0, 0]
+                    }
+                }
+            },
+            "grid": [
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"],
+                ["rightEdge"]
+            ]
+
+        }
+    }
+}

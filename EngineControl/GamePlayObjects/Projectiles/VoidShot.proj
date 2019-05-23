@@ -1,0 +1,27 @@
+ID = "VoidShot"
+
+images = ["_IMAGES\\Sprites\\Projectiles\\VoidShot.png"]
+
+
+lifeTime = 150
+speed = 20
+multiplier = 1
+friendly = False
+damage = 10
+drawAfter = 1
+cooldown = 12
+energyUse = 1
+
+def onLoad(host):
+    host.audio.triggerSound("VoidShot1")
+
+def onMove(host):
+    pass
+
+def onHit(host):
+    host.shouldKill = True
+
+def onDraw(host):
+    pass
+
+

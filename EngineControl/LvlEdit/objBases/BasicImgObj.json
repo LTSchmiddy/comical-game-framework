@@ -1,0 +1,13 @@
+{
+    "label": "SET_ME!!",
+    "name": "Floor Candle",
+    "type": "ImageBg",
+    "pos": [
+        0,
+        0
+    ],
+    "layer": -5,
+    "imagePath":"_IMAGES/TileFiles/HardWoodFloor.png",
+    "useTemplateFile": "None.json",
+    "useTemplate": "None"
+}

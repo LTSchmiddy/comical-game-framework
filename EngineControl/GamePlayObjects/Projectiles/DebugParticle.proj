@@ -1,0 +1,30 @@
+ID = "DebugParticle"
+
+images = ["_IMAGES\\Debug\\DebugParticle.png"]
+
+
+
+lifeTime = 2
+speed = 0
+multiplier = 1
+friendly = False
+damage = 0
+drawAfter = 0
+cooldown = 12
+energyUse = 1
+useGravity = False
+
+def onLoad(host):
+    pass
+
+def onMove(host):
+    pass
+
+def onHit(host):
+    # host.shouldKill = True
+    pass
+
+def onDraw(host):
+    pass
+
+

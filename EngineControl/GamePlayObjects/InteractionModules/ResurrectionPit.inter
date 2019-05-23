@@ -1,0 +1,16 @@
+
+
+class InterMod:
+    def __init__(self, host):
+        self.host = host
+        self.onScreenDesc = self.host.jsonArgs["PopUp"]
+
+    def onInteract(self):
+        # self.host.world.dialog.trigger(self.host.jsonArgs["Conversation"], self.host)
+        pass
+
+    def onCollision(self):
+        self.host.world.mainPlayer.stats["health"].modValue(self.host.world.mainPlayer.stats["health"].getMax() / 60)
+
+    def onAIUpdate(self):
+        pass

@@ -1,0 +1,23 @@
+{
+    "Objects": {
+        "__main__": {
+            "name": "Dungeon Entrance",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [
+                0,
+                0
+            ],
+            "layer": -1,
+            "imagePath": "_IMAGES/Sprites/Doorways/DungeonEntrance1/DE_Closed1.png",
+            "imagePathOpen": "_IMAGES/Sprites/Doorways/DungeonEntrance1/DE_Opened1.png",
+            "InteractMod": "LockingDoor",
+            "PopUp": "E) Enter Dungeon",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080]
+
+
+        }
+    }
+}

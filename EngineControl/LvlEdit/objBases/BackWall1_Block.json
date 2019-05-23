@@ -1,0 +1,9 @@
+{
+    "label": "SET_ME!!",
+    "pos":[0, 0],
+    "dimens":[5, 5],
+    "useTemplate": "BackWall1",
+    "layer": -1,
+    "useMultPos": 32,
+    "useMultDimens": 32
+}

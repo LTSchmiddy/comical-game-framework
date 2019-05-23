@@ -1,0 +1,33 @@
+
+
+class InterMod:
+    def __init__(self, host):
+        self.host = host
+        self.onScreenDesc = self.host.jsonArgs["PopUp"]
+
+        self.useCollide = False
+        if "useCollide" in self.host.jsonArgs:
+            self.useCollide = self.host.jsonArgs["useCollide"]
+
+        self.playerPosMult = [1, 1]
+        if "playerPosMult" in self.host.jsonArgs:
+            self.playerPosMult = self.host.jsonArgs["playerPosMult"]
+
+        self.newGrid = self.host.world.currentGrid
+        if "Grid" in self.host.jsonArgs:
+            self.newGrid = self.host.jsonArgs["Grid"]
+
+        self.newGridPos = self.host.world.worldGridPos
+        if "GridPos" in self.host.jsonArgs:
+            self.newGridPos = self.host.jsonArgs["GridPos"]
+
+    def onInteract(self):
+        if not self.useCollide:
+            self.host.world.triggerEnv([self.host.jsonArgs["PlayerPos"][0] * self.playerPosMult[0], self.host.jsonArgs["PlayerPos"][1] * self.playerPosMult[1]], self.newGrid, self.newGridPos)
+
+    def onCollision(self):
+        if self.useCollide:
+            self.host.world.triggerEnv([self.host.jsonArgs["PlayerPos"][0] * self.playerPosMult[0], self.host.jsonArgs["PlayerPos"][1] * self.playerPosMult[1]], self.newGrid, self.newGridPos)
+
+    def onAIUpdate(self):
+        pass

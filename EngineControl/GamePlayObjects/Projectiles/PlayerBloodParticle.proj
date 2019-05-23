@@ -1,0 +1,30 @@
+ID = "PlayerBloodParticle"
+
+images = ["_IMAGES\\Sprites\\Player\\BloodParticle.png"]
+
+
+
+lifeTime = 60
+speed = 10
+multiplier = 1
+friendly = True
+damage = 0
+drawAfter = 0
+cooldown = 12
+energyUse = 1
+useGravity = 1
+
+def onLoad(host):
+    pass
+
+def onMove(host):
+    pass
+
+def onHit(host):
+    # host.shouldKill = True
+    host.momentum = [0, 0]
+
+def onDraw(host):
+    pass
+
+

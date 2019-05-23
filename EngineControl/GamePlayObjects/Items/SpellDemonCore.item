@@ -1,0 +1,34 @@
+itemID = "SpellDemonCore"
+desc = "Superb..."
+name = "Spell: Demon Core"
+value = 2000
+equip = None
+canSell = False
+
+consumeOnUse = False
+
+imagePath = "_IMAGES\\Sprites\\Projectiles\\DemonCore\\ShotAnim\\1.png"
+
+
+def onItemUse(world, item=None):
+    world.mainPlayer.useMagicArm = True
+
+    if world.mainPlayer.stats["magic"].tryToUse(50):
+        if world.mainPlayer.aiming:
+            world.fireProjectile(world.mainPlayer.rect.topleft, world.mainPlayer.fireAngle, 0, "DemonCoreShot")
+        else:
+            if world.mainPlayer.faceDir == "r":
+                world.fireProjectile(world.mainPlayer.rect.topleft, 0, 0, "DemonCoreShot")
+            elif world.mainPlayer.faceDir == "l":
+                world.fireProjectile(world.mainPlayer.rect.topleft, world.projectiles.mPi, 0, "DemonCoreShot")
+
+
+
+
+def onItemEquip(world, item=None):
+    pass
+
+
+
+def onItemRemove(world, item=None):
+    pass

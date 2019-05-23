@@ -1,0 +1,18 @@
+{
+    "Objects": {
+        "DropGate1": {
+            "name": "Drop Gate",
+            "useMultPos": 32,
+            "type": "ImageObj",
+            "pos": [
+                0,
+                0
+            ],
+            "layer": 5,
+            "imagePath": "_IMAGES/Sprites/Doorways/DropGate1/DropGate1_LOCKED.png",
+            "imagePathOpen": "_IMAGES/Sprites/Doorways/DropGate1/DropGate1_UNLOCKED.png",
+            "InteractMod": "Gate"
+
+        }
+    }
+}

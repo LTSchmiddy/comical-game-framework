@@ -1,0 +1,39 @@
+{
+    "Objects": {
+        "CannonLeft": {
+            "imagePath": "_IMAGES/Sprites/Dungeons/ALL/BigCannon/BigCannonLeft.png",
+            "layer": 5,
+            "name": "Cannon",
+            "pos": [
+                5,
+                -9
+            ],
+            "type": "ImageObj",
+            "InteractMod": "ProjectileLauncher",
+            "aimAngle": 180,
+            "fireOrigin": [-128, 0],
+            "flashOrigin": [-64, 0],
+            "mFlash": "BigMuzzleFlash"
+
+
+        },
+
+
+        "CannonRight": {
+            "imagePath": "_IMAGES/Sprites/Dungeons/ALL/BigCannon/BigCannonRight.png",
+            "layer": 5,
+            "name": "Cannon",
+            "pos": [
+                5,
+                -9
+            ],
+            "type": "ImageObj",
+            "InteractMod": "ProjectileLauncher",
+            "aimAngle": 0,
+            "fireOrigin": [192, 0],
+            "flashOrigin": [192, 0],
+            "mFlash": "BigMuzzleFlash"
+
+        }
+    }
+}

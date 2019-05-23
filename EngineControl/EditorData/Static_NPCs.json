@@ -1,0 +1,16 @@
+{
+    "Objects": {
+        "Madikae": {
+            "imagePath": "_IMAGES/Sprites/NPCs/Madikae/CharBodyLeft.png",
+            "imagePathRight": "_IMAGES/Sprites/NPCs/Madikae/CharBodyRight.png",
+            "layer": -5,
+            "name": "Madikae",
+            "pos": [
+                23,
+                -2.25
+            ],
+            "type": "ImageBg",
+            "InteractMod": "Madikae_Obj_Control"
+        }
+    }
+}

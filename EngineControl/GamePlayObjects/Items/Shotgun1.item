@@ -1,0 +1,28 @@
+itemID = "Shotgun1"
+desc = """(Does 5 Damage x 5 Pellets) The Comrador Superb 20-Gauge Semi-Automatic Shotgun is the best budget boom-stick money can buy. Featuring a real-time spread visualizer, a barb wire stock, and our patented "Butter-Bang" no-jam-like-toe-jam receiver, we guarantee that this beauty will rip through, among other things, your enemies.
+"""
+name = "Superb Shotgun"
+value = 30
+equip = "Weapon"
+
+consumeOnUse = False
+
+imagePath = "_IMAGES\\Sprites\\Items\\Telepathy Book\\TelepathyBook.png"
+
+
+def onItemUse(world, item=None):
+
+    world.mainPlayer.spawnProjectile(5)
+    world.mainPlayer.spawnProjectile(5)
+    world.mainPlayer.spawnProjectile(5)
+    world.mainPlayer.spawnProjectile(5)
+    world.mainPlayer.spawnProjectile(5)
+
+def onItemEquip(world, item=None):
+    world.mainPlayer.currentAmmo = "Shotgun"
+    world.mainPlayer.projectileName = "Pellet"
+
+
+
+def onItemRemove(world, item=None):
+    world.mainPlayer.resetWeapon()

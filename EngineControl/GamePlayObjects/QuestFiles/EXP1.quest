@@ -1,0 +1,13 @@
+questID = "EXP1"
+
+name = "In the Beginning..."
+
+
+# questFlags = {}
+questVariables = {}
+
+
+def GetJournalDesc(world, vars):
+    return "Hello Alex. This is a quest!!"
+
+
