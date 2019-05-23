@@ -1,9 +1,0 @@
-{
-    "useTemplate": "Lever1",
-    "name": "Lever",
-    "label": "SET_ME!! - Lever1",
-    "PopUp": "E) Flip Main Switch",
-    "pos":[0, 0],
-    "InteractMod": "Switch",
-    "layer": -1
-}

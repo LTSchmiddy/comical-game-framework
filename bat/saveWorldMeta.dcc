@@ -1,5 +1,0 @@
-import json
-
-writeOut = open("EngineControl/TempFiles/WorldMetaOut.json", "w")
-json.dump(world.permenData.worldEnvData, writeOut, sort_keys=True, indent = 4, separators = (',', ': '))
-writeOut.close()

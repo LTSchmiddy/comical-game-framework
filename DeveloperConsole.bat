@@ -1,1 +1,0 @@
-Python27\\python.exe DevCom.py

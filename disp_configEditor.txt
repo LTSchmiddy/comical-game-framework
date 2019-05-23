@@ -1,6 +1,0 @@
-#Module_Name,Width,Height,Position_X,Position_y
-#@res=1440,810
-MainGameEditorPanel,1440,810,0,0
-#StatBar,150,810,1290,0
-PauseMenu,563,338,439,169
-InGameMenu,675,450,326,131

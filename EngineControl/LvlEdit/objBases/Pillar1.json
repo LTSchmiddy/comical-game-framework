@@ -1,8 +1,0 @@
-{
-    "useTemplate": "Pillar1",
-    "label": "SET_ME!! - Pillar1",
-    "name": "Pillar",
-    "pos":[0, 0],
-    "ItemID": "ManaTank",
-    "layer": -1
-}
