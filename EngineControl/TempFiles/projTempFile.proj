@@ -1,0 +1,34 @@
+ID = "BurningHelixImpact"
+
+images = ["@BurningHelixSB:BurningDrill_ImpactAnim/1.png",
+          "@BurningHelixSB:BurningDrill_ImpactAnim/2.png",
+          "@BurningHelixSB:BurningDrill_ImpactAnim/3.png",
+          "@BurningHelixSB:BurningDrill_ImpactAnim/4.png"]
+
+
+lifeTime = 6
+speed = 0
+multiplier = 1
+friendly = True
+damage = 0
+drawAfter = 0
+cooldown = 12
+energyUse = 1
+animSpeed = 2
+
+def onLoad(host):
+    host.rotateImage(host.angle)
+    # host.audio.triggerSound("laser7")
+    pass
+def onMove(host):
+    pass
+
+def onHit(host):
+
+    pass
+
+
+def onDraw(host):
+    pass
+
+

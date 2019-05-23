@@ -1,0 +1,67 @@
+ID = "BigCannonBallShrapnel1"
+
+images = ["_IMAGES/Sprites/Projectiles/CannonShrapnel/Shrapnel1.png",
+          "_IMAGES/Sprites/Projectiles/CannonShrapnel/Shrapnel2.png",
+          "_IMAGES/Sprites/Projectiles/CannonShrapnel/Shrapnel3.png",
+          "_IMAGES/Sprites/Projectiles/CannonShrapnel/Shrapnel4.png"
+          ]
+
+
+lifeTime = 5
+speed = 20
+multiplier = 1
+friendly = False
+damage = 0
+drawAfter = 1
+cooldown = 12
+energyUse = 1
+useGravity = 1
+
+
+def onLoad(host):
+    # host.audio.triggerSound("laser7")
+    # host.damage = host.damage + (host.damage * host.world.mainPlayer.stats["attrDam"].getValue() / 10
+    host.rotateImage(-host.angle)
+    host.projData["tick"] = 5
+    pass
+
+def onMove(host):
+    pass
+
+def onHit(host):
+
+    if (host.hitObj != None) and (host.hitObj != host.world.mainPlayer):
+        wallHits = 0
+        for i in host.hitObj.Walls:
+            if host.rect.colliderect(i):
+                if i.direction == "left" and host.momentum[0] > 0:
+                    host.momentum[0] = -host.momentum[0]
+                    wallHits += 1
+                if i.direction == "right" and host.momentum[0] < 0:
+                    host.momentum[0] = -host.momentum[0]
+                    wallHits += 1
+                if i.direction == "up" and host.momentum[1] > 0:
+                    host.momentum[1] = 0
+                    # host.shouldKill = True
+                    # host.momentum[1] = -host.momentum[1]
+                    wallHits += 1
+                if i.direction == "down" and host.momentum[1] < 0:
+                    host.momentum[1] = -host.momentum[1]
+                    wallHits += 1
+
+        if wallHits == 0:
+            host.projData["tick"] -= 1
+
+        if host.projData["tick"] <= 0:
+            host.shouldKill = True
+
+
+def onHitPlayer(host):
+    # if not host.shouldKill:
+    #     host.world.mainPlayer.pushPlayer(host.momentum)
+    pass
+
+def onDraw(host):
+    pass
+
+

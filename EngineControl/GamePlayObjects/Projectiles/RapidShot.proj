@@ -1,0 +1,28 @@
+ID = "RapidShot"
+
+images = ["_IMAGES\\Sprites\\Projectiles\\Pellet1.png"]
+
+
+lifeTime = 150
+speed = 20
+multiplier = 2
+friendly = True
+damage = 16
+drawAfter = 2
+cooldown = 2
+energyUse = 1
+
+def onLoad(host):
+    # host.audio.triggerSound("laser7")
+    host.audio.playOnChannel("MG9_2")
+
+def onMove(host):
+    pass
+
+def onHit(host):
+    host.shouldKill = True
+
+def onDraw(host):
+    pass
+
+

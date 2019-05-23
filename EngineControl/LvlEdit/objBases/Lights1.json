@@ -1,0 +1,12 @@
+{
+    "useTemplateFile": "Lights.json",
+    "useTemplate": "FloorCandle1",
+    "label": "SET_ME!! - FloorCandle1",
+    "name": "Floor Candle",
+    "type": "ImageBg",
+    "pos": [
+        0,
+        0
+    ],
+    "layer": -5
+}

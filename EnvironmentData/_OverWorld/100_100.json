@@ -1,0 +1,229 @@
+{
+    "Objects": {
+        "Amberdale_Spawner": {
+            "layer": -1,
+            "pos": [
+                10,
+                3
+            ],
+            "useMultPos": 32,
+            "useTemplate": "RespawnMonolith",
+            "useTemplateFile": "Spawners.json"
+        },
+        "Ceiling": {
+            "dimens": [
+                34,
+                2
+            ],
+            "pos": [
+                -12,
+                -7
+            ],
+            "skipWall": [
+                "left",
+                "up",
+                "right"
+            ],
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "useTemplate": "BackWall1"
+        },
+        "ExitPassage": {
+            "Grid": "_OverWorld",
+            "GridPos": [
+                0,
+                0
+            ],
+            "InteractMod": "goToScene",
+            "PlayerPos": [
+                -760,
+                2145
+            ],
+            "PopUp": "E) Leave",
+            "imagePath": "_IMAGES/Sprites/Transition Pads/DoorWays/WallPassageLight_OnRight.png",
+            "layer": 1,
+            "name": "Exit Passage",
+            "pos": [
+                16,
+                3
+            ],
+            "radius": 20,
+            "type": "ImageBg",
+            "useMultPos": 32
+        },
+        "Floor": {
+            "dimens": [
+                34,
+                2
+            ],
+            "pos": [
+                -12,
+                10
+            ],
+            "skipWall": [
+                "left",
+                "down",
+                "right"
+            ],
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "useTemplate": "BackWall1"
+        },
+        "Left Wall": {
+            "Conversation": "SaveDialog",
+            "InteractMod": "BasicChat",
+            "dimens": [
+                2,
+                12
+            ],
+            "pos": [
+                -12,
+                -5
+            ],
+            "skipWall": [
+                "down",
+                "up",
+                "left"
+            ],
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "useTemplate": "BackWall1"
+        },
+        "PadLeft": {
+            "dimens": [
+                8,
+                3
+            ],
+            "pos": [
+                -12,
+                7
+            ],
+            "skipWall": [
+                "left",
+                "down"
+            ],
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "useTemplate": "BackWall1"
+        },
+        "PadRight": {
+            "dimens": [
+                20,
+                3
+            ],
+            "pos": [
+                2,
+                7
+            ],
+            "skipWall": [
+                "right",
+                "down"
+            ],
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "useTemplate": "BackWall1"
+        },
+        "Pit": {
+            "InteractMod": "ResurrectionPit",
+            "PopUp": "Resurrection Pit",
+            "pos": [
+                -4,
+                4
+            ],
+            "radius": 100,
+            "useMultPos": 32,
+            "useTemplate": "Resurrection Pit"
+        },
+        "Pit Bridge": {
+            "dimens": [
+                6,
+                1
+            ],
+            "pos": [
+                -4,
+                7
+            ],
+            "type": "EnvImagePlat",
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "useTemplate": "BackWall1"
+        },
+        "Resurrection Pit Chamber Bkg": {
+            "alpha": 50,
+            "color": [
+                0,
+                135,
+                125
+            ],
+            "dimens": [
+                34,
+                18
+            ],
+            "layer": -6,
+            "pos": [
+                -12,
+                -7
+            ],
+            "tileCoord": [
+                2,
+                2
+            ],
+            "tilePath": "sewer_Large.png",
+            "tileSize": [
+                64,
+                64
+            ],
+            "type": "EnvImageBg",
+            "useMultDimens": 32,
+            "useMultPos": 32
+        },
+        "Right Wall": {
+            "dimens": [
+                2,
+                12
+            ],
+            "layer": 1,
+            "pos": [
+                20,
+                -5
+            ],
+            "skipWall": [
+                "up",
+                "right",
+                "down"
+            ],
+            "useMultDimens": 32,
+            "useMultPos": 32,
+            "useTemplate": "BackWall1"
+        }
+    },
+    "PlayerSpawn": {
+        "Background Color": [
+            0,
+            0,
+            0
+        ],
+        "GameStart": [
+            0,
+            0
+        ],
+        "Transition Tiles": {
+            "DOWN": [
+                1490,
+                890
+            ],
+            "LEFT": [
+                -50,
+                490
+            ],
+            "RIGHT": [
+                3000,
+                490
+            ],
+            "UP": [
+                1490,
+                10
+            ]
+        }
+    }
+}

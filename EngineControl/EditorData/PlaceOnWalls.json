@@ -1,0 +1,15 @@
+{
+    "Objects": {
+        "BlueDrapesLong": {
+            "name": "Blue Drapes",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [
+                0,
+                0
+            ],
+            "layer": -1,
+            "imagePath": "_IMAGES/Sprites/Decor/PlaceOnWalls/Drapes/BlueDrapes.png"
+        }
+    }
+}

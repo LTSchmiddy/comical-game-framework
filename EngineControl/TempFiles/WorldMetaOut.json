@@ -1,0 +1,15 @@
+{
+    "_OverWorld": {
+        "[0, 0]": {
+            "EXP_Pillar": {
+                "isTaken": false
+            },
+            "RightDoorKeyHole^0": {
+                "stateBool": true
+            },
+            "RightKeyPillar1^0": {
+                "isTaken": true
+            }
+        }
+    }
+}

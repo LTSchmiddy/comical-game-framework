@@ -1,0 +1,22 @@
+
+class InterMod:
+    def __init__(self, host):
+        from dataManagers import counter
+        import math
+
+        self.aimAngle = math.atan2(-1, 0)
+
+
+        self.ticker = counter.TickCounter(3, True, False)
+        self.host = host
+        self.onScreenDesc = ""
+
+    def onInteract(self):
+        pass
+
+    def onCollision(self):
+        pass
+
+    def onAIUpdate(self):
+        if self.ticker.check():
+            self.host.world.fireProjectile([self.host.rect.center[0] - 16, self.host.rect.center[1] + 42], self.aimAngle, 20, "SpawnParticle1")

@@ -1,0 +1,128 @@
+{
+    "Objects": {
+
+        "Left": {
+            "name": "Left Transition",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [0,0],
+            "layer": 5,
+            "PopUp": "To New Location",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080],
+            "radius": 128,
+            "InteractMod": "goToScene",
+            "useCollide": true,
+            "animFolder": "_IMAGES/Sprites/Transition Pads/LEFT",
+            "animDelay": 20,
+            "animExt": ".png"
+        },
+
+        "Right":  {
+            "name": "Right Transition",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [0,0],
+            "layer": 5,
+            "PopUp": "To New Location",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080],
+            "radius": 128,
+            "InteractMod": "goToScene",
+            "useCollide": true,
+            "animFolder": "_IMAGES/Sprites/Transition Pads/RIGHT",
+            "animDelay": 20,
+            "animExt": ".png"
+        },
+
+        "PassageRight":  {
+            "name": "Right Transition",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [0,0],
+            "layer": 5,
+            "PopUp": "To New Location",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080],
+            "radius": 128,
+            "InteractMod": "goToScene",
+            "useCollide": true,
+           "imagePath": "_IMAGES/Sprites/Transition Pads/DoorWays/WallPassageLight_OnRight.png"
+        },
+
+        "PassageLeft":  {
+            "name": "Right Transition",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [0,0],
+            "layer": 5,
+            "PopUp": "To New Location",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080],
+            "radius": 128,
+            "InteractMod": "goToScene",
+            "useCollide": true,
+           "imagePath": "_IMAGES/Sprites/Transition Pads/DoorWays/WallPassageLight_OnLeft.png"
+        },
+
+        "Up":  {
+            "name": "Up Transition",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [0,0],
+            "layer": 5,
+            "PopUp": "To New Location",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080],
+            "radius": 128,
+            "InteractMod": "goToScene",
+            "useCollide": true,
+            "animFolder": "_IMAGES/Sprites/Transition Pads/UP",
+            "animDelay": 20,
+            "animExt": ".png"
+        },
+
+        "Down":  {
+            "name": "Right Transition",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [0,0],
+            "layer": 5,
+            "PopUp": "To New Location",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080],
+            "radius": 128,
+            "InteractMod": "goToScene",
+            "useCollide": true,
+            "animFolder": "_IMAGES/Sprites/Transition Pads/DOWN",
+            "animDelay": 20,
+            "animExt": ".png"
+        },
+
+        "BarredDoorBlack1": {
+            "name": "Iron Bars Door",
+            "useMultPos": 32,
+            "type": "ImageBg",
+            "pos": [
+                0,
+                0
+            ],
+            "layer": -1,
+            "imagePath": "_IMAGES/Sprites/Doorways/BarsDoorBlack1/Closed.png",
+            "imagePathOpen": "_IMAGES/Sprites/Doorways/BarsDoorBlack1/Opened.png",
+            "InteractMod": "LockingDoor",
+            "PopUp": "E) Enter",
+            "Grid": "_OverWorld",
+            "GridPos": [0, 0],
+            "PlayerPos": [4800, 2080]
+
+
+        }
+    }
+}

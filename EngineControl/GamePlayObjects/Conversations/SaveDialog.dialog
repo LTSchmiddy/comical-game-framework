@@ -1,0 +1,37 @@
+def onStart(world, host):
+    return "Begin"
+
+class Begin:
+    def __init__(self, world, host):
+        self.world = world
+        self.host = host
+        # self.image = "_IMAGES/DialogPanes/DevilsDue.png"
+        self.msg = "Would you like to activate this resurrection pit? When you die, you will return here and be revived."
+        self.resp = {
+            "Sure": self.onSave,
+            "Not Really": "NoSave",
+
+        }
+
+    def onSave(self):
+        self.world.saveMan.save()
+        self.world.mainPlayer.respawnPoint = [self.world.currentGrid, self.world.worldGridPos]
+        return "Save"
+
+
+
+
+class Save:
+    def __init__(self, world, host):
+        self.msg = "Your preference has been configured on the network. I await your... return with eagerness."
+        self.resp = {
+            "... Ok then.": "_EXIT",
+        }
+
+
+class NoSave:
+    def __init__(self, world, host):
+        self.msg = "Pity. I was looking forward to it. Your loss."
+        self.resp = {
+            "That's creepy...": "_EXIT",
+        }

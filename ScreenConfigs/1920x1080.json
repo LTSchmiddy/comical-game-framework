@@ -1,0 +1,70 @@
+{
+    "Screen Resolution": [1920, 1080],
+    "Panel Settings":{
+        "HotBar":{
+            "res": [260, 70],
+            "pos": [75, 1030]
+        },
+        "MainGamePanel":{
+            "res": [1920, 1080],
+            "pos": [0, 0]
+        },
+        "StatBar": {
+            "res": [600, 150],
+            "pos": [20, 20]
+        },
+        "InGameMenu":{
+            "res": [1880, 860],
+            "pos": [20, 200],
+            "text size": 30,
+            "text button size": 60
+        },
+        "ShoppingMenu":{
+            "res": [1880, 860],
+            "pos":[20, 200]
+        },
+        "DialogImgDisplay": {
+            "res": [1920, 1080],
+            "pos": [0, 0]
+        },
+        "DialogScreen":{
+            "res":[1880, 360],
+            "pos": [20, 20]
+        },
+
+        "PauseMenu":{
+            "res":[500, 700],
+            "pos": [110, 225]
+        },
+        "MainMenu":{
+            "res":[500, 850],
+            "pos":[110, 75]
+        },
+        "LoadGameMenu":{
+            "res":[950, 850],
+            "pos":[610, 75]
+        },
+
+        "DebugConsole":{
+            "res":[1880, 1040],
+            "pos": [20, 20],
+            "textSize": 40
+        },
+        "NotificationArea":{
+            "res": [550, 100],
+            "pos": [1320, 20]
+        },
+        "FlipBookViewer":{
+            "res":[1920, 1080],
+            "pos": [0, 0]
+        },
+        "WeapHUD": {
+            "res":[150, 128],
+            "pos": [1700, 920]
+        },
+        "RLM": {
+            "res":[768, 384],
+            "pos": [576, 696]
+        }
+    }
+}

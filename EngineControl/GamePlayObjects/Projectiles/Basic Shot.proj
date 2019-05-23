@@ -1,0 +1,32 @@
+ID = "Basic Shot"
+
+images = ["_IMAGES\\Sprites\\Projectiles\\Pulse.png"]
+
+
+lifeTime = 150
+speed = 20
+multiplier = 3
+friendly = True
+damage = 30
+drawAfter = 1
+cooldown = 12
+energyUse = 1
+
+loadImgOnStart = True
+
+
+def onLoad(host):
+    host.audio.triggerSound("laser7")
+    host.damage = host.damage + (host.damage * host.world.mainPlayer.stats["attrDam"].getValue() / 10)
+
+def onMove(host):
+    pass
+
+def onHit(host):
+    host.world.fireProjectile(host.rect.topleft, host.angle, 0, "BasicShotImpact")
+    host.shouldKill = True
+
+def onDraw(host):
+    pass
+
+

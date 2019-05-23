@@ -1,0 +1,68 @@
+
+
+class InterMod:
+    def __init__(self, host):
+        import pygame
+        self.host = host
+
+
+        self.keyItem = "BaseKey"
+
+        if "Key ID" in self.host.jsonArgs:
+            self.keyItem = self.host.jsonArgs["Key ID"]
+
+        self.canRemove = False
+        if "Can Remove" in self.host.jsonArgs:
+            self.canRemove = self.host.jsonArgs["Can Remove"]
+
+
+
+        self.falseDesc = self.host.jsonArgs["PopUp"] + " " + self.host.world.items[self.keyItem].name
+        self.trueDesc = ""
+        if self.canRemove:
+            self.trueDesc = self.host.jsonArgs["PopUp_R"] + " " + self.host.world.items[self.keyItem].name
+
+        self.onScreenDesc = self.falseDesc
+
+        self.default = False
+        if "default" in self.host.jsonArgs:
+            self.default = self.host.jsonArgs["default"]
+
+
+        # keyItemImage =
+
+        self.offImg = pygame.image.load(self.host.jsonArgs["imagePath"])
+        self.onImg = pygame.image.load(self.host.jsonArgs["imagePathOn"])
+        # self.host.image = self.onImg
+
+    def onInteract(self):
+        # self.host.world.permenData.setEnvValue(self.host.label, "stateBool", not self.host.world.permenData.getEnvValue(self.host.label, "stateBool", self.default))
+        if not self.host.world.permenData.getEnvValue(self.host.label, "stateBool", self.default):
+            if self.host.world.mainPlayer.removeItem(self.keyItem, 1):
+                self.host.world.permenData.setEnvValue(self.host.label, "stateBool", True)
+                self.host.audio.triggerSound("impact7")
+
+        else:
+            if self.canRemove:
+                self.host.world.mainPlayer.addItem(self.keyItem)
+                self.host.world.permenData.setEnvValue(self.host.label, "stateBool", False)
+                self.host.audio.triggerSound("impact7")
+
+
+
+
+    def onCollision(self):
+        pass
+
+    def onAIUpdate(self):
+        if self.host.world.permenData.getEnvValue(self.host.label, "stateBool", self.default):
+            self.host.image = self.onImg
+            self.onScreenDesc = self.trueDesc
+
+        else:
+            self.host.image = self.offImg
+
+            if self.keyItem in self.host.world.mainPlayer.inventory:
+                self.onScreenDesc = self.falseDesc
+            else:
+                self.onScreenDesc = "'" + self.host.world.items[self.keyItem].name + "' Required"

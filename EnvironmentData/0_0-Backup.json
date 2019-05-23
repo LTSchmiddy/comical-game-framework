@@ -1,0 +1,77 @@
+{
+    "PlayerSpawn": {
+        "GameStart":[1500, 500],
+        "Transition Tiles": {
+            "UP": [1600, -96],
+            "DOWN": [1490, 990],
+            "LEFT": [-50, 490],
+            "RIGHT":[3000, 490]
+        }
+    },
+
+    "Objects": {
+        "Room Floor":{
+            "type": "EnvShuffleImageBg",
+            "pos":[0,0],
+            "dimens":[3008,2000],
+            "useTemplate": "OutdoorGrass1",
+            "seed": 1,
+            "layer": -10
+
+        },
+        "Back Wall":{
+            "type": "EnvImageObj",
+            "pos":[0,-500],
+            "dimens":[3008,500],
+            "useTemplate": "BackWall1"
+        },
+
+        "Left Wall":{
+            "type": "EnvImageObj",
+            "pos":[-64,-500],
+            "dimens":[64,2564],
+            "useTemplate": "BackWall1"
+        },
+        "Right Wall":{
+            "type": "EnvImageObj",
+            "pos":[3008,-500],
+            "dimens":[64,2564],
+            "useTemplate": "BackWall1"
+        },
+        "Front Wall":{
+            "type": "EnvColorObj",
+            "pos":[-64, 2000],
+            "dimens":[3136, 64],
+
+            "color":[0, 0, 0],
+            "layer": 1
+        },
+        "Front Plat":{
+            "type": "EnvImagePlat",
+            "pos":[-64, 1800],
+            "dimens":[310, 64],
+
+            "color":[0, 0, 0],
+            "layer": -1,
+
+            "useTemplate": "BackWall1"
+        },
+        "Lamp": {
+            "name": "Mr. Lampy",
+            "type": "ImageObject",
+            "pos":[500, 500],
+            "useTemplate": "Lamp1",
+            "InteractMod": "BasicChat"
+        },
+
+        "Doorway": {
+            "type": "EnvImageGridBg",
+            "pos": [1536, -128],
+            "dimens": [64, 64],
+            "layer": -1,
+            "useTemplate": "SewerArchWay1"
+        }
+
+    }
+    
+}

@@ -1,0 +1,201 @@
+import os
+import pygame
+import flipAnim
+import GameStat
+from dataManagers import counter
+#
+# from EngineControl import Enemy as Enemy
+
+
+
+
+class VoidSpectre(InstEnemy):
+    def __init__ (self, pos, world):
+        super(VoidSpectre, self).__init__(pos, world)
+
+        self.imgDir = "_IMAGES\Sprites\Enemies\Spectre"
+        self.imgExt = ".png"
+        self.imgDict = {}
+
+        self.stats = {
+            "health": GameStat.Stat(100, 0, 100),
+            "attrSpeed": GameStat.Stat(2, 0, 100)
+        }
+
+        self.loadImages()
+
+        self.image = self.imgDict["SpectreMainRight"]
+
+        self.radius = 600
+        self.attackDistance = 0
+
+        self.rect = pygame.Rect([pos[0] + 8, pos[1] + 8], [48, 48])
+        self.rectOffset = [8, 8]
+
+        self.showAttackCounter = counter.TickCounter(10, False, True)
+        self.showAttackCounter.setTime(10)
+
+        self.attackCounter = counter.TickCounter(200, False, False)
+        self.attackCounter.setTime(300)
+        self.shouldDieIsCalled = False
+
+
+        self.xpReward = 1
+
+
+        # self.radius = 350
+        # self.image.fill([255, 255, 255])
+
+
+    def loadImages(self):
+        for i in os.listdir(self.imgDir):
+            if i.endswith(self.imgExt):
+                filePath = self.imgDir + "\\" + i
+                imgName = i.split(self.imgExt)[0]
+                imgIn = pygame.image.load(filePath)
+                # print cModDict["itemID"]
+                self.imgDict[imgName] = imgIn
+        # print self.imgDict
+
+    def runAI(self):
+        super(VoidSpectre, self).runAI()
+        self.attackCounter.check()
+        self.showHitCounter.check()
+        self.showAttackCounter.check()
+
+        self.basicChaseAI()
+
+        if not self.detectsPlayer:
+            self.attackCounter.reset()
+
+        self.updateMove()
+        if self.rect.colliderect(self.world.mainPlayer.rect):
+            self.world.mainPlayer.takeHit(-1)
+
+
+    def doAttack(self):
+        if self.attackCounter.getState():
+            self.world.fireProjectile([self.rect.topleft[0] + 16, self.rect.topleft[1] + 16 ], self.getAngleTo(self.world.mainPlayer.rect.topleft), 2, "VoidShot")
+            self.attackCounter.reset()
+            self.showAttackCounter.reset()
+
+
+
+    def onDeath(self):
+        super(VoidSpectre, self).onDeath()
+        if not self.shouldDieIsCalled:
+            self.world.spawnEnemy("VoidSpectreDeath", [self.rect.x, self.rect.y])
+            self.shouldDieIsCalled = True
+            
+        # self.world.notif.notify(str(self.world.mainPlayer.level.getXP()))
+
+
+    def updateDraw(self):
+
+        if self.direction == "r":
+            if self.showHitCounter.getState():
+                self.image = self.imgDict["SpectreHitRight"]
+            elif self.showAttackCounter.check() and self.detectsPlayer:
+                self.image = self.imgDict["SpectreAttackRight"]
+            elif (self.attackCounter.current > self.attackCounter.ticks - 60) and self.detectsPlayer:
+                self.image = self.imgDict["SpectreChargeRight"]
+            else:
+                self.image = self.imgDict["SpectreMainRight"]
+        else:
+            if self.showHitCounter.getState():
+                self.image = self.imgDict["SpectreHitLeft"]
+            elif self.showAttackCounter.getState() and self.detectsPlayer:
+                self.image = self.imgDict["SpectreAttackLeft"]
+            elif (self.attackCounter.current > self.attackCounter.ticks - 60) and self.detectsPlayer:
+                self.image = self.imgDict["SpectreChargeLeft"]
+            else:
+                self.image = self.imgDict["SpectreMainLeft"]
+
+
+        # def takeHit(self, damage):
+        #     self.stats["health"].modValue(damage)
+        #     # print self.Health.getValue()
+        #     if self.stats["health"].getValue() == 0:
+        #         self.onDeath()
+        #
+        # def onDeath(self):
+        #     self.shouldDie = True
+
+
+classes["VoidSpectre"] = VoidSpectre
+
+
+class VoidSpectreDeath(InstEnemy):
+    def __init__ (self, pos, world):
+        super(VoidSpectreDeath, self).__init__(pos, world)
+
+        self.stats = {
+            "health": GameStat.Stat(20000, 0, 20000),
+            "attrSpeed": GameStat.Stat(4, 0, 100)
+        }
+        self.image = None
+        self.anim = flipAnim.Animation(3, False)
+        self.anim.loadFramesFromFolder("_IMAGES\Sprites\Enemies\Spectre\Death", ".png")
+
+
+        # self.radius = 350
+        # self.image.fill([255, 255, 255])
+
+    def runAI(self):
+        super(VoidSpectreDeath, self).runAI()
+
+        if self.anim.currentFrame == self.anim.frameCount() - 1:
+            self.shouldDie = True
+
+    def onDeath(self):
+        pass
+
+    def updateDraw(self):
+        self.image = self.anim.getFrame()
+
+        if self.image == None:
+            self.image = self.anim.getLastFrame()
+
+
+
+classes["VoidSpectreDeath"] = VoidSpectreDeath
+
+
+
+class VoidSpectreSpawn(InstEnemy):
+    def __init__ (self, pos, world):
+        super(VoidSpectreSpawn, self).__init__(pos, world)
+
+
+        self.image = None
+        self.anim = flipAnim.Animation(6, False)
+        self.anim.loadFramesFromFolder("_IMAGES\Sprites\Enemies\Spectre\Spawn", ".png")
+
+
+    def onDeath(self):
+        self.shouldDie = True
+        # self.radius = 350
+        # self.image.fill([255, 255, 255])
+
+    def runAI(self):
+        super(VoidSpectreSpawn, self).runAI()
+
+        if self.anim.currentFrame == self.anim.frameCount() - 1:
+            self.onDeath()
+
+
+    def onDeath(self):
+        if not self.shouldDie:
+            self.shouldDie = True
+            self.spawnerList.append(self.world.spawnEnemy("VoidSpectre", [self.rect.x, self.rect.y]))
+
+
+    def updateDraw(self):
+        self.image = self.anim.getFrame()
+
+        if self.image == None:
+            self.image = self.anim.getLastFrame()
+
+
+
+classes["VoidSpectreSpawn"] = VoidSpectreSpawn

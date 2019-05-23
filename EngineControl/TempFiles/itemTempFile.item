@@ -1,0 +1,23 @@
+itemID = "BurningHelixSwordBand"
+desc = "Your sword can now launch a fire blast on use. Slightly weaker than a standard swing though."
+name = "Burning Helix (Sword Band)"
+value = 30
+equip = "Sword"
+
+consumeOnUse = False
+
+imagePath = "@BurningHelixSB:BurningHelixSB.png"
+
+
+
+def onItemUse(world, item=None):
+
+    world.mainPlayer.spawnProjectile(5)
+
+def onItemEquip(world, item=None):
+    world.mainPlayer.bladeProjectile = "BurningHelixSB.BurningHelix"
+
+
+
+def onItemRemove(world, item=None):
+    world.mainPlayer.resetSword()

@@ -1,0 +1,107 @@
+{
+    "PlayerSpawn": {
+        "GameStart":[0, 0],
+        "Background Color": [0, 0, 0],
+        "Transition Tiles": {
+            "UP": [1490, 10],
+            "DOWN": [1490, 890],
+            "LEFT": [-50, 490],
+            "RIGHT":[3000, 490]
+        }
+    },
+
+    "Objects": {
+
+
+        "Floor": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos": [-12, 10],
+            "dimens": [34, 2],
+            "useTemplate": "BackWall1"
+        },
+
+        "Ceiling": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos": [-12, -7],
+            "dimens": [34, 2],
+            "useTemplate": "BackWall1"
+        },
+
+         "Left Wall": {
+             "useMultPos": 32,
+             "useMultDimens": 32,
+             "pos": [-12, -5],
+             "dimens": [2, 12],
+             "useTemplate": "BackWall1",
+             "InteractMod": "BasicChat",
+             "Conversation": "SaveDialog"
+        },
+
+        "Right Wall": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos": [20, -5],
+            "dimens": [2, 12],
+            "useTemplate": "BackWall1",
+            "layer": 1
+        },
+        "PadLeft": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos": [-12, 7],
+            "dimens": [8, 3],
+            "useTemplate": "BackWall1"
+        },
+
+        "PadRight": {
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos": [2, 7],
+            "dimens": [20, 3],
+            "useTemplate": "BackWall1"
+        },
+
+        "Pit Bridge": {
+            "type": "EnvImagePlat",
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos": [-4, 7],
+            "dimens": [6, 1],
+            "useTemplate": "BackWall1"
+        },
+
+        "Pit": {
+            "useMultPos": 32,
+            "radius": 100,
+            "pos":[-4, 4],
+            "InteractMod": "ResurrectionPit",
+            "PopUp": "Resurrection Pit",
+            "useTemplate": "Resurrection Pit"
+        },
+
+        "ExitPassage": {
+            "name": "Exit Passage",
+            "type": "ImageBg",
+            "useMultPos": 32,
+            "pos":[16, 3],
+            "imagePath": "_IMAGES/Sprites/Transition Pads/DoorWays/WallPassageLight_OnRight.png",
+            "layer": 1
+        },
+
+        "Resurrection Pit Chamber Bkg": {
+            "type": "EnvImageBg",
+            "useMultPos": 32,
+            "useMultDimens": 32,
+            "pos":[-12,-7],
+            "dimens":[34,18],
+            "tilePath":"sewer_Large.png",
+            "tileCoord":[2,2],
+            "tileSize":[64, 64],
+            "color":[0, 135, 125],
+            "layer": -6,
+            "alpha": 50
+        }
+    }
+}

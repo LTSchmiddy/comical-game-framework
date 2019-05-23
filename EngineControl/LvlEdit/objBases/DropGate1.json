@@ -1,0 +1,11 @@
+{
+    "useTemplateFile": "Gates.json",
+    "useTemplate": "DropGate1",
+    "label": "SET_ME!! - DropGate1",
+    "name": "Drop Gate",
+    "pos": [
+        0,
+        0
+    ],
+    "layer": -5
+}

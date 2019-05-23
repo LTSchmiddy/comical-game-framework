@@ -1,0 +1,133 @@
+import os
+import pygame
+import flipAnim
+import GameStat
+from dataManagers import counter
+#
+# from EngineControl import Enemy as Enemy
+
+
+
+
+class VoidStalker(InstEnemy):
+    def __init__ (self, pos, world):
+        super(VoidStalker, self).__init__(pos, world)
+
+        self.imgDir = "_IMAGES\Sprites\NPCs\Stalker\SolidDir"
+        self.imgExt = ".png"
+        self.imgDict = {}
+        self.drawDict = []
+
+
+        self.WalkLeftAnim = None
+        self.WalkRightAnim = None
+
+
+        self.stats = {
+            "health": GameStat.Stat(100, 0, 100),
+            "attrSpeed": GameStat.Stat(4, 0, 100)
+        }
+
+        self.loadImages()
+
+        self.rectOffset = [50, 0]
+
+        self.image = pygame.Surface([125, 75]).convert_alpha()
+        # self.rect = pygame.Rect([pos[0] + 50, pos[1]], self.image.get_size())
+        self.rect = pygame.Rect([pos[0] + 50, pos[1]], [25, 75])
+
+
+        # self.bodyImg = "CharBody"
+        # self.bodyImgPosRight = [27, 3]
+        # self.bodyImgPosLeft = [23, 3]
+        #
+        # self.legImg = "LS"
+        # self.legImgPosRight = [12, 50]
+        # self.legImgPosLeft = [13, 50]
+
+
+        self.radius = 600
+        self.attackDistance = 0
+
+        self.showAttackCounter = counter.TickCounter(10, False, True)
+        self.showAttackCounter.setTime(10)
+
+        self.attackCounter = counter.TickCounter(200, False, False)
+        self.attackCounter.setTime(300)
+
+        self.canFly = False
+        # self.radius = 350
+        # self.image.fill([255, 255, 255])
+
+
+    def sanitize(self):
+        super(VoidStalker, self).sanitize()
+        del self.WalkLeftAnim
+        del self.WalkRightAnim
+
+    def loadImages(self):
+        for i in os.listdir(self.imgDir):
+            if i.endswith(self.imgExt):
+                filePath = self.imgDir + "\\" + i
+                imgName = i.split(self.imgExt)[0]
+                imgIn = pygame.image.load(filePath)
+                # print cModDict["itemID"]
+                self.imgDict[imgName] = imgIn
+        # print self.imgDict
+
+        self.WalkLeftAnim = flipAnim.Animation(5, True)
+        self.WalkLeftAnim.loadFramesFromFolder("_IMAGES/Sprites/NPCs/Stalker/SolidDir/lMoving", ".png")
+
+        self.WalkRightAnim = flipAnim.Animation(5, True)
+        self.WalkRightAnim.loadFramesFromFolder("_IMAGES/Sprites/NPCs/Stalker/SolidDir/rMoving", ".png")
+
+
+    def runAI(self):
+        super(VoidStalker, self).runAI()
+        self.basicChaseAI()
+
+        self.updateMove()
+        if self.rect.colliderect(self.world.mainPlayer.rect):
+            self.world.mainPlayer.takeHit(-1)
+
+        if self.momentum[0] > 0:
+            self.direction = "r"
+        elif self.momentum[0] < 0:
+            self.direction = "l"
+
+    def onDeath(self):
+        if not self.shouldDie:
+            self.shouldDie = True
+            self.world.spawnEnemy("VoidSpectreDeath", [self.rect.x, self.rect.y])
+            self.world.mainPlayer.level.rewardXP(10)
+        # self.world.notif.notify(str(self.world.mainPlayer.level.getXP()))
+
+
+    def updateDraw(self):
+        if self.momentum[0] == 0:
+            self.image = self.imgDict[self.direction + "CharExp"]
+        else:
+            if self.momentum[0] > 0:
+                self.image = self.WalkRightAnim.getFrame()
+            if self.momentum[0] < 0:
+                self.image = self.WalkLeftAnim.getFrame()
+
+        # self.image.fill([0, 0, 0, 255])
+
+        # self.image.blit(self.imgDict[self.direction + "BottomArm"], [0, 0])
+        # self.image.blit(self.imgDict[self.direction + "Body"], [0, 0])
+        # if self.momentum[0] == 0:
+        #     self.image.blit(self.imgDict[self.direction + "StandingLegs"], [0, 0])
+        # else:
+        #     self.image.blit(self.ExpWalkDir.getFrame(), [0, 0])
+        # self.image.blit(self.imgDict[self.direction + "Weapon"], [0, 0])
+        # self.image.blit(self.imgDict[self.direction + "TopArm"], [0, 0])
+        # self.image.blit(self.imgDict[self.direction + "CharExp"], [0, 0])
+
+
+
+
+
+
+
+classes["VoidStalker"] = VoidStalker

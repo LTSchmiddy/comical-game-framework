@@ -1,0 +1,33 @@
+
+
+class InterMod:
+    def __init__(self, host):
+        import pygame
+        self.host = host
+        self.onScreenDesc = self.host.jsonArgs["PopUp"]
+
+        self.controller = None
+        if "controller" in self.host.jsonArgs:
+            self.controller = self.host.jsonArgs["controller"]
+
+
+        self.offImg = pygame.image.load(self.host.jsonArgs["imagePath"])
+        self.onImg = pygame.image.load(self.host.jsonArgs["imagePathOpen"])
+        # self.host.image = self.onImg
+
+    def onInteract(self):
+        pass
+
+    def onCollision(self):
+        pass
+
+    def onAIUpdate(self):
+        if self.controller != None:
+            if self.host.world.permenData.getEnvValue(self.controller, "stateBool", False):
+                self.host.image = self.onImg
+                self.host.solid = False
+                self.host.Walls = []
+            else:
+                self.host.image = self.offImg
+                self.host.solid = True
+                self.host.setWalls()

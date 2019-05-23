@@ -1,0 +1,12 @@
+itemID = "AuraItem"
+desc = "Recovers 100 Aura points"
+name = "Aura Charge"
+value = 30
+imagePath = "_IMAGES\\Sprites\\Items\\Aura\\Anim\\1.png"
+animdir = "_IMAGES\\Sprites\\Items\\Aura\\Anim"
+
+def onItemUse(world, item=None):
+    # print "Healing..."
+    world.mainPlayer.stats["weapEnergy"].modValue(100)
+
+

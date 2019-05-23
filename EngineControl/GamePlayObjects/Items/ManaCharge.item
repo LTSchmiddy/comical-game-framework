@@ -1,0 +1,23 @@
+
+itemID = "ManaCharge"
+desc = "Restores 50 Points of Magic"
+name = "Mana Charge"
+value = 30
+equip = None
+
+consumeOnUse = True
+
+imagePath = "_IMAGES\Sprites\Items\Telepathy Book\TelepathyBook.png"
+
+
+def onItemUse(world, item=None):
+    world.mainPlayer.stats["magic"].modValue(50)
+
+def onItemEquip(world, item=None):
+    pass
+
+
+def onItemRemove(world, item=None):
+    pass     
+        
+        

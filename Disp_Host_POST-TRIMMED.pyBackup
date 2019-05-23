@@ -1,0 +1,387 @@
+# ************************************************************
+# Engine Project Name: Panels - PC Action/Adventure 2D Game Engine
+# Game Project Name: Comical - The Decrepit Mansion
+# Project Creation Date: April 2017
+# --------------------------------------------------------
+# Script Title: Panels Game Engine - Master File
+# Script Creation Date: April 2015
+# Author: Alex "LT_Schmiddy" Schmid
+# Version: 0.a
+# ************************************************************
+
+#NOTICE: The Panels Engine comes with it's own bundled version of python 2.7
+
+# Import modules needed for the built-in launcher, and for loading the game settings.
+import Launcher, gameSettingsMaster, sys
+
+# Load current game settings from file to a dict.
+mainSettings = gameSettingsMaster.getSettingsDict()
+
+
+# If you wanna use a launcher (such as with Launcher.py), you could call it here before the rest of the game loads:
+if "--useLauncher" in sys.argv:
+    Launcher.loadLauncher()
+
+
+# Time to start initializing the Panels Game Engine:
+# Importing dependency python libraries:
+import pygame, os, time, thread
+from EngineControl import flipAnim
+
+# Importing managers for various forms of gameplay data and calls from the current game world object to various other UI panels.
+import dataManagers
+from dataManagers import audioMan, dialogManager, flipBookHandler, debugLogging, steamWrapper, storeManager, saveManager, counter, contentPackages
+
+
+# Load web server for web-based game editor (THIS IS SYSTEM IS EXPERIMENTAL, UNFINISHED, AND CAN CAUSE MASSIVE SLOWDOWN!!)
+if mainSettings["Editor"]["isServerActive"]:
+    import EditorSystem, cherrypy
+
+
+# Importing the module files for the actual game panels:
+import MainGamePanel, StatBar, InGameMenu, ShoppingMenu, DialogScreen, DialogImgDisplay, PauseMenu, MainMenu, DebugConsole, \
+    NotificationArea, FlipBookViewer, HotBar, WeapHUD, RLM
+
+# Placing Panel modules in a list for easy processing. If you want to add additional panels to the engine, import them
+# somewhere in the code above (in the previous import statement is recommended), and then add them to the list below
+# using the same syntax as the other entries, with brackets enclosing the name of each module (each module is the only
+# item in its own sublist. This is because the initialization sequence will append values to module's sublist. Writing
+# the list out in this style saves a bit of time during initialization). This list is also the draw order of the panels,
+# so be sure to arrange your panel in the desired place. Also, be sure to add entries to the files in ScreenConfigs folder
+# to set your panel's size and position in the game screen.
+panelModules = [[MainGamePanel], [StatBar], [WeapHUD], [RLM], [InGameMenu], [HotBar], [DialogImgDisplay], [DialogScreen], [ShoppingMenu],
+                [PauseMenu], [MainMenu], [DebugConsole], [NotificationArea], [FlipBookViewer]]
+
+
+
+
+# Putting the primary display settings on their own Dict for easy use:
+displaySettings = mainSettings["Display"]
+
+# Loading the resolution-specific settings from the appropriate file in the ScreenConfigs folder
+screenSettings = gameSettingsMaster.getScreenSettings(displaySettings["DisplayFile"])
+dispdims = screenSettings["Screen Resolution"]
+
+
+# Adding each panel's settings from the current ScreenConfigs file to the correct entry in panelModules.
+# (Position and Dimensions have seperate, additional enteries from the rest of the Dict, for ease of use in the panel.
+for i in range(0, len(panelModules)):
+    useName = str(panelModules[i][0].__name__)
+    panelModules[i].append(screenSettings["Panel Settings"][useName]["res"])
+    panelModules[i].append(screenSettings["Panel Settings"][useName]["pos"])
+    panelModules[i].append(screenSettings["Panel Settings"][useName])
+
+# Loading Steam API:
+# The first parameter is required. It determines if you want to use the built-in Steam integration in your game.
+# The second parameter toggles whether the Steam Wrapper module is in developer mode.
+# Originally, this parameter was implemented for making the game engine use the version of SBPv2.dll from it's original
+# Visual Studio project file when I was originally making the engine. Unless you're planning to build your own version
+# of the steam wrapper DLL file (don't worry, original Visual Studio project folder is included), set this to False or
+# simply leave it blank. If set to True, you may add the path to the directory containing your version of SBPv2.dll as a
+# third argument. Additionally, putting the steam wrapper in Dev mode causes it to print out more of what it's processing.
+# steamAPI = steamWrapper.API(True, True, "C:\\Users\\Alex Schmid\\Documents\\Visual Studio 2017\\Projects\\SBPv2\\Debug")
+# steamAPI = steamWrapper.API(True)
+steamAPI = steamWrapper.API(False)
+
+# These are mainly here for debugging purposes before you get access to Steam's API from Valve.
+isSteamLoaded = steamAPI.initSteam()
+print steamAPI.getSpam()
+
+
+
+# Begin initializing Pygame:
+pygame.init()
+pygame.mixer.init()
+
+gfxFPS = displaySettings["Frames Per Second"]
+
+# pygame.display.set_caption("Comical - v0.1")
+pygame.display.set_caption("Comical")
+pygame.display.set_icon(pygame.image.load("_IMAGES/Icons/MainIcon.png"))
+
+if (displaySettings["Fullscreen"]):
+    screen = pygame.display.set_mode(dispdims, pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE)
+    # screen = pygame.display.set_mode(dispdims, pygame.FULLSCREEN|pygame.DOUBLEBUF|pygame.OPENGL|pygame.HWSURFACE )
+else:
+    screen = pygame.display.set_mode(dispdims, pygame.DOUBLEBUF | pygame.RESIZABLE)
+    # screen = pygame.display.set_mode(dispdims, pygame.DOUBLEBUF|pygame.OPENGL)
+
+
+# useWrapperServer = False
+# if "--useWrapperServer" in sys.argv:
+#     useWrapperServer = True
+#     print "Using Wrapper Server!"
+# else:
+#     print "Wrapper Server Disabled!"
+
+if "--FPS" in sys.argv:
+    gfxFPS = int(sys.argv[sys.argv.index("--FPS") + 1])
+    print "FPS Set to", gfxFPS
+    time.sleep(1)
+
+fpsFactor = int(60 / gfxFPS)
+# print fpsFactor
+flipCounter = fpsFactor
+
+audio = audioMan.AudioController()
+
+# Initialize Loading Screen. Automatically appears if the main loop is taking too long.
+canUseLoadingScreen = False
+isLoading = False
+lastFrameUpdate = 0
+loadingAnim = flipAnim.Animation(1)
+loadingAnim.loadFramesFromFolder("_IMAGES/SplashScreen/LoadingAnim", ".png")
+
+
+# Text renderer object for the on-screen FPS counter:
+fpsFontRend = pygame.font.Font("_IMAGES\\ComicSans.ttf", 20)
+
+# Gets whether the game should adjust it's own frameskip/framerate based on the amount of slowdown from processing. (RECOMMENDED)
+useFPSStabilizing = displaySettings["Use Frame Stabilizing"]
+
+# Stores the current actual FPS. Update at the end of the main loop, if drawing wasn't skipped for that frame.
+currentFPS = 0
+
+
+keyheldlist = []
+def getUserKeyInput():
+    global keyheldlist
+    event_list = pygame.event.get()
+
+    kdnlist = []
+    kuplist = []
+
+    mouseDownList = []
+    mouseUpList = []
+
+    mouseaction = list(pygame.mouse.get_pressed())
+    mouseaction.append(0)
+
+    for event in event_list:
+        if event.type == pygame.QUIT:
+            sys.exit(0)
+        elif event.type == pygame.KEYDOWN:
+            kdnlist.append(event.key)
+            keyheldlist.append(event.key)
+
+        elif event.type == pygame.KEYUP:
+            kuplist.append(event.key)
+            keyheldlist.remove(event.key)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 4:
+                mouseaction[3] = (1)
+
+            elif event.button == 5:
+                mouseaction[3] = (-1)
+
+            mouseDownList.append(event.button)
+
+        elif event.type == pygame.MOUSEBUTTONUP:
+            mouseUpList.append(event.button)
+
+    if (pygame.K_RALT in keyheldlist or pygame.K_LALT in keyheldlist) and pygame.K_F4 in keyheldlist:
+        sys.exit(0)
+
+    return {"kdown": kdnlist, "kup": kuplist, "kheld": keyheldlist, "mdown": mouseDownList, "mup": mouseUpList,
+             "mstate": mouseaction}
+
+
+
+def flipOnThread():
+    thread.start_new_thread(pygame.display.flip, ())
+
+def LoadingScreenThread():
+    global lastFrameUpdate, isLoading
+    splash = pygame.image.load("_IMAGES/SplashScreen/SiteLogoTab_v3.png")
+    # screen.fill([0, 0, 0])
+    # screen.blit(splash, [(screen.get_size()[0] / 2) - (splash.get_size()[0] / 2),
+    #                      (screen.get_size()[1] / 2) - (splash.get_size()[1] / 2)])
+    try:
+        while True:
+            if pygame.time.get_ticks() - lastFrameUpdate > 300 and not isLoading:
+                isLoading = True
+                loadingAnim.currentFrame = 0
+
+            if isLoading and canUseLoadingScreen:
+                # LSEVENTS = pygame.event.get()
+                screen.fill([0, 0, 0])
+                splash = loadingAnim.getFrame()
+                screen.blit(splash, [(screen.get_size()[0] / 2) - (splash.get_size()[0] / 2),
+                                     (screen.get_size()[1] / 2) - (splash.get_size()[1] / 2)])
+                pygame.display.flip()
+
+            pygame.time.delay(200)
+    except Exception as ex:
+        template = "An exception of type {0} occurred:\n{1!r}"
+        message = template.format(type(ex).__name__, ex.args)
+        print message
+
+
+inIntro = True
+def LogoIntro():
+    global canUseLoadingScreen, inIntro
+    if not "--SkipLogo" in sys.argv:
+
+        screen.fill([255, 255, 255])
+        splash = pygame.image.load("_IMAGES\\SplashScreen\\SiteLogoTab_v3.png")
+        # screen.fill([0, 0, 0])
+        screen.blit(splash, [(screen.get_size()[0] / 2) - (splash.get_size()[0] / 2),
+                             (screen.get_size()[1] / 2) - (splash.get_size()[1] / 2)])
+        pygame.display.flip()
+
+        LogoCounter = counter.TickCounter(4, False, True)
+        channela = audio.triggerSound("AngelFishJingle")
+
+        while LogoCounter.check():
+            ISEvent = pygame.event.get()
+            time.sleep(.05)
+
+
+
+    canUseLoadingScreen = True
+    inIntro = False
+    if mainSettings["Audio"]["Use Game Music"]:
+        audio.setMusicTrack("MainTheme")
+
+
+thread.start_new_thread(LogoIntro, ())
+thread.start_new_thread(LoadingScreenThread, ())
+
+
+hostvar = {
+    "showFPS": False,
+    "useEditor": mainSettings["Editor"]["isActive"],
+    "DebugStart": False,
+    "Game Paused": True,
+    "Show Pause Menu": False,
+    "Show Status Menu": False,
+    "Player Weapon Energy": 100,
+    "Player Weapon Energy Max": 100,
+    "Player Magic": 100,
+    "Player Magic Max": 100,
+    "Player Health": 100,
+    "Player Health Max": 100,
+    "Player Weapon Name": "Pulse Laser",
+    "Developer Mode": False,
+    "Game Env": None,
+    "Game Notif": dataManagers.NotificationHandler.Handler(True),
+    "masterAudio": audio,
+    "dialogM": dialogManager.dialogManager(),
+    # "dialogBGM": dialogManager.dialogBGManager(),
+    "flipbookM": flipBookHandler.FlipbookManager(),
+    "steamAPI": steamAPI,
+    "debugLogging": debugLogging.Logger(False),
+    "storeManager": storeManager.StoreManager(),
+    "saveM": saveManager.SaveManager(),
+    "ContentPackageManager": contentPackages.mainHandler
+}
+
+# startup loop:
+
+
+
+panels = []
+
+for i in range(0, len(panelModules)):
+    panelModules[i][3]["hostVar"] = hostvar
+
+for mod in panelModules:
+    n = mod[0].GUI(mod[1], mod[2], mod[3])
+    #    n.updatePanel()
+    panels.append(n)
+
+# print panels
+
+clockLogic = pygame.time.Clock()
+clockGFX = pygame.time.Clock()
+
+for i in panels:
+    screen.blit(i.Panel, i.pos)
+
+
+# pygame.display.flip()
+
+if mainSettings["Editor"]["isServerActive"]:
+    thread.start_new_thread(EditorSystem.launchServer, tuple([hostvar]))
+
+
+drawingPanels = 0
+
+
+
+
+
+
+# while not os.path.isfile("kill"):
+
+
+
+
+
+
+while inIntro:
+    pass
+
+while True:
+    flipCounter += 1
+
+    # print flipCounter
+    if flipCounter >= fpsFactor:
+        flipCounter = 0
+        # print "Tick!"
+
+    # GET EVENTS
+    userInputDict = getUserKeyInput()
+
+
+    screen.fill([25, 25, 25])
+    # RUN EACH PANEL
+    for i in panels:
+
+        i.get_hostvar(hostvar)
+        i.bg_tasks()
+
+        i.event_loop(userInputDict)
+        hostvar = i.send_hostvar()
+
+        # if useGFXThread == False:
+        if flipCounter == 0:
+            # panelDraw(i)
+            #
+            if i.show:
+                if i.get_updatePanel():
+                    i.updatePanel()
+
+                screen.blit(i.Panel, i.pos)
+                #
+                #
+
+    # print flipCounter
+    # currentFPS = clockLogic.get_fps()
+    if flipCounter == 0:
+
+        while drawingPanels != 0:
+            pass
+        if hostvar["showFPS"]:
+            # screen.blit(fpsFontRend.render(str(fpsFactor), True, [255, 255, 200], [0, 0, 0]), [0, 0])
+            screen.blit(fpsFontRend.render(str(currentFPS), True, [255, 255, 200], [0, 0, 0]), [0, 0])
+        pygame.display.flip()
+        # flipDisplayFn()
+        currentFPS = clockLogic.get_fps()
+        clockLogic.tick(60)
+
+        fpsFactor = int(60 / gfxFPS)
+        # print "Flip"
+
+    # clockLogic.tick(60)
+    if useFPSStabilizing:
+
+        if currentFPS > 0:
+            # print currentFPS
+            fpsFactor = int(gfxFPS / currentFPS)
+
+    lastFrameUpdate = pygame.time.get_ticks()
+
+    isLoading = False
+
+
