@@ -1,0 +1,6 @@
+c:\users\alex schmid\documents\visual studio 2017\Projects\Comical Launcher v1-cs\Comical Launcher v1-cs\bin\Debug\Comical Launcher v1-cs.exe.config
+c:\users\alex schmid\documents\visual studio 2017\Projects\Comical Launcher v1-cs\Comical Launcher v1-cs\bin\Debug\Comical Launcher v1-cs.exe
+c:\users\alex schmid\documents\visual studio 2017\Projects\Comical Launcher v1-cs\Comical Launcher v1-cs\bin\Debug\Comical Launcher v1-cs.pdb
+c:\users\alex schmid\documents\visual studio 2017\Projects\Comical Launcher v1-cs\Comical Launcher v1-cs\obj\Debug\Comical Launcher v1-cs.csprojResolveAssemblyReference.cache
+c:\users\alex schmid\documents\visual studio 2017\Projects\Comical Launcher v1-cs\Comical Launcher v1-cs\obj\Debug\Comical Launcher v1-cs.exe
+c:\users\alex schmid\documents\visual studio 2017\Projects\Comical Launcher v1-cs\Comical Launcher v1-cs\obj\Debug\Comical Launcher v1-cs.pdb
