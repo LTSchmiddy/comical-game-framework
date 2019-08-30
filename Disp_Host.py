@@ -63,9 +63,9 @@ for i in range(0, len(modules)):
 # Loading Steam API:
 
 # run Visual Studio dev version of the API wrapper:
-steamAPI = steamWrapper.API(True, True, "C:\\Users\\Alex Schmid\\Documents\\Visual Studio 2017\\Projects\\SBPv2\\Debug")
+# steamAPI = steamWrapper.API(True, True, "C:\\Users\\Alex Schmid\\Documents\\Visual Studio 2017\\Projects\\SBPv2\\Debug")
 # steamAPI = steamWrapper.API(True)
-# steamAPI = steamWrapper.API(False)
+steamAPI = steamWrapper.API(False)
 
 
 isSteamLoaded = steamAPI.initSteam()
